@@ -4,104 +4,27 @@
   <meta charset="UTF-8">
   <title>PAINEL DE IPTV</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
-      color: #333;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #007bff;
-    }
-
-    form, .search-area {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 600px;
-      margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    form label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    form input, form select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .btn, .btn-export, .btn-import {
-      margin-top: 15px;
-      padding: 10px 15px;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .btn { background: #007bff; }
-    .btn:hover { background: #0056b3; }
-
-    .btn-export { background: #ffc107; margin-left: 10px; }
-    .btn-import { background: #17a2b8; margin-left: 10px; }
-
-    .client-list {
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .client-card {
-      background: #fff;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .client-card p { margin: 5px 0; }
-
-    .client-card button {
-      margin: 5px 5px 0 0;
-      padding: 6px 10px;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .btn-mac { background: #007bff; }
-    .btn-chave { background: #28a745; }
-    .btn-excluir { background: #dc3545; }
-    .btn-editar { background: #6c757d; }
-
-    .client-card button:hover { opacity: 0.9; }
-
-    .tabs { text-align: center; margin-bottom: 20px; }
-    .tab-btn {
-      padding: 10px 20px;
-      margin: 0 5px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .tab-btn:hover { background: #0056b3; }
-
-    .tab-content { display: none; max-width: 800px; margin: auto; }
-    .tab-content.active { display: block; }
-
-    .vencido { border-left: 6px solid #dc3545; background-color: #fff5f5; }
-    .alerta-vencido { color: #dc3545; font-weight: bold; margin-bottom: 10px; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+    h1,h2 { text-align:center;color:#007bff; }
+    form,.search-area { background:#fff;padding:20px;border-radius:8px; max-width:600px;margin:20px auto;box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    form label { display:block;margin-top:10px;font-weight:bold; }
+    form input, form select { width:100%; padding:8px; margin-top:5px; border:1px solid #ccc; border-radius:4px;}
+    .btn,.btn-export,.btn-import { margin-top:15px; padding:10px 15px; color:white; border:none; border-radius:4px; cursor:pointer;}
+    .btn { background:#007bff; } .btn:hover { background:#0056b3; }
+    .btn-export { background:#ffc107; margin-left:10px;} .btn-import { background:#17a2b8; margin-left:10px;}
+    .client-list { max-width:800px;margin:auto; }
+    .client-card { background:#fff; padding:15px; margin:10px 0; border-radius:6px; box-shadow:0 0 5px rgba(0,0,0,0.1); }
+    .client-card p { margin:5px 0; }
+    .client-card button { margin:5px 5px 0 0; padding:6px 10px; color:white; border:none; border-radius:4px; cursor:pointer; }
+    .btn-mac { background:#007bff; } .btn-chave { background:#28a745; } .btn-excluir { background:#dc3545; } .btn-editar { background:#6c757d; }
+    .client-card button:hover { opacity:0.9; }
+    .tabs { text-align:center; margin-bottom:20px;}
+    .tab-btn { padding:10px 20px; margin:0 5px; background:#007bff;color:white; border:none;border-radius:4px;cursor:pointer;}
+    .tab-btn:hover { background:#0056b3; }
+    .tab-content { display:none; max-width:800px;margin:auto; }
+    .tab-content.active { display:block; }
+    .vencido { border-left:6px solid #dc3545; background-color:#fff5f5; }
+    .alerta-vencido { color:#dc3545; font-weight:bold; margin-bottom:10px; }
   </style>
 </head>
 <body>
@@ -123,18 +46,12 @@
   <div id="cadastrar" class="tab-content">
     <h2>Cadastrar Cliente</h2>
     <form id="clientForm">
-      <label>Nome:</label>
-      <input type="text" name="nome" required>
-      <label>Contato:</label>
-      <input type="text" name="contato" id="contatoInput" maxlength="15" required>
-      <label>Plano:</label>
-      <input type="text" name="plano" required>
-      <label>MAC Address:</label>
-      <input type="text" name="mac" id="macInput" maxlength="17" required>
-      <label>Chave de acesso:</label>
-      <input type="text" name="chave" id="chaveInput" maxlength="6" required>
-      <label>Lista IPTV:</label>
-      <input type="text" name="lista" required>
+      <label>Nome:</label><input type="text" name="nome" required>
+      <label>Contato:</label><input type="text" name="contato" id="contatoInput" maxlength="15" required>
+      <label>Plano:</label><input type="text" name="plano" required>
+      <label>MAC Address:</label><input type="text" name="mac" id="macInput" maxlength="17" required>
+      <label>Chave de acesso:</label><input type="text" name="chave" id="chaveInput" maxlength="6" required>
+      <label>Lista IPTV:</label><input type="text" name="lista" required>
       <label>Dispositivo:</label>
       <select name="dispositivo" required>
         <option value="">Selecione</option>
@@ -143,30 +60,26 @@
         <option value="Computador">Computador</option>
         <option value="Roku">Roku</option>
       </select>
-      <label>Data da assinatura:</label>
-      <input type="date" name="expiracao" required>
-      <label>Expiração da lista:</label>
-      <input type="date" name="data_assinatura" required>
+      <label>Data da assinatura:</label><input type="date" name="data_assinatura" required>
+      <label>Expiração da lista:</label><input type="date" name="expiracao" required>
       <button type="submit" class="btn">Cadastrar</button>
     </form>
   </div>
 
   <div id="clientes" class="tab-content">
     <h2>Clientes Cadastrados</h2>
+    <input type="file" id="importFile" class="btn-import">
+    <button onclick="exportToExcel()" class="btn-export">Exportar Excel</button>
     <div id="clientList" class="client-list"></div>
-    <input type="file" id="excelInput" accept=".xlsx" style="display:none" onchange="importFromExcel(event)">
-    <button onclick="document.getElementById('excelInput').click()" class="btn-import">📥 Importar Excel</button>
-    <button onclick="exportToExcel()" class="btn-export">📤 Exportar para Excel</button>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <!-- SheetJS -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-    import { getStorage } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAaBINwIJggs4WYhJewrjeSF21mbg5h0uI",
@@ -178,166 +91,131 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
     const db = getFirestore(app);
-    const storage = getStorage(app);
-    console.log("Firebase conectado!");
-  </script>
+    const clientsCol = collection(db, "clientes");
+    let editDocId = null;
 
-  <script>
-    let editIndex = null;
-
-    function showTab(tabId) {
+    // Mostrar abas
+    function showTab(tabId){
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
     }
+    window.showTab = showTab;
 
-    window.onload = () => {
+    window.onload = async () => {
       showTab('clientes');
-      const clients = JSON.parse(localStorage.getItem('clientes') || '[]');
-      renderClients(clients);
+      await loadClients();
     };
 
-    document.getElementById('clientForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const mac = document.getElementById('macInput').value;
-      const chave = document.getElementById('chaveInput').value;
-      const contato = document.getElementById('contatoInput').value;
-
-      if(mac.replace(/[^a-fA-F0-9]/g,'').length !== 12){ alert("MAC Address deve conter 12 caracteres alfanuméricos."); return; }
-      if(chave.length !==6){ alert("Chave de acesso deve conter exatamente 6 dígitos."); return; }
-      if(contato.replace(/\D/g,'').length !==10){ alert("Número de contato deve conter 10 dígitos."); return; }
-
-      const data = Object.fromEntries(new FormData(this));
-      const clients = JSON.parse(localStorage.getItem('clientes') || '[]');
-
-      if(editIndex !== null){ clients[editIndex]=data; editIndex=null; } else { clients.push(data); }
-
-      localStorage.setItem('clientes', JSON.stringify(clients));
-      this.reset();
+    // Carregar clientes
+    async function loadClients(){
+      const snapshot = await getDocs(clientsCol);
+      const clients = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       renderClients(clients);
-      showTab('clientes');
-    });
+    }
 
     function renderClients(clients){
       const list = document.getElementById('clientList');
       list.innerHTML='';
-      clients.forEach((c,i)=>{
+      clients.forEach(c=>{
+        const hoje=new Date();
+        const expiracao=new Date(c.expiracao);
+        const vencido = expiracao<hoje;
         list.innerHTML+=`
-          <div class="client-card">
-            <p><strong>${c.nome}</strong></p>
-            <p>Plano: ${c.plano}</p>
-            <p>Dispositivo: ${c.dispositivo}</p>
-            <p>Contato: ${c.contato}</p>
-            <p>MAC: ${c.mac} | Chave: ${c.chave}</p>
-            <p>Lista: ${c.lista}</p>
-            <p>Expiração da lista: ${c.data_assinatura} | Assinatura: ${c.expiracao}</p>
-            <button onclick="copy('${c.mac}')" class="btn-mac">Copiar MAC</button>
-            <button onclick="copy('${c.chave}')" class="btn-chave">Copiar Chave</button>
-            <button onclick="editClient(${i})" class="btn-editar">Editar</button>
-            <button onclick="removeClient(${i})" class="btn-excluir">Excluir</button>
-          </div>`;
+        <div class="client-card ${vencido?'vencido':''}">
+          <p><strong>${c.nome}</strong></p>
+          ${vencido?'<p class="alerta-vencido">⚠ Assinatura vencida</p>':''}
+          <p>Plano: ${c.plano}</p>
+          <p>Dispositivo: ${c.dispositivo}</p>
+          <p>Contato: ${c.contato}</p>
+          <p>MAC: ${c.mac} | Chave: ${c.chave}</p>
+          <p>Lista: ${c.lista}</p>
+          <p>Assinatura: ${c.data_assinatura} | Expiração da lista: ${c.expiracao}</p>
+          <button onclick="copy('${c.mac}')" class="btn-mac">Copiar MAC</button>
+          <button onclick="copy('${c.chave}')" class="btn-chave">Copiar Chave</button>
+          <button onclick="editClient('${c.id}')" class="btn-editar">Editar</button>
+          <button onclick="deleteClient('${c.id}')" class="btn-excluir">Excluir</button>
+        </div>`;
       });
     }
 
-    function copy(text){ navigator.clipboard.writeText(text); alert("Copiado: "+text); }
-    function removeClient(index){
-      const clients=JSON.parse(localStorage.getItem('clientes')||'[]');
-      clients.splice(index,1);
-      localStorage.setItem('clientes',JSON.stringify(clients));
-      renderClients(clients);
-    }
+    window.copy = function(text){ navigator.clipboard.writeText(text); alert("Copiado: "+text); }
 
-    function searchClient(){
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      const clients=JSON.parse(localStorage.getItem('clientes')||'[]');
-      const results=document.getElementById('searchResults');
-      results.innerHTML='';
-      clients.forEach((c,i)=>{
-        const nomeMatch=c.nome.toLowerCase().includes(term);
-        const macMatch=c.mac.toLowerCase().includes(term);
-        if(nomeMatch || macMatch){
-          const hoje=new Date();
-          const expiracao=new Date(c.expiracao);
-          const vencido=expiracao<hoje;
-          results.innerHTML+=`
-            <div class="client-card ${vencido?'vencido':''}">
-              <p><strong>${c.nome}</strong></p>
-              ${vencido?'<p class="alerta-vencido">⚠ Assinatura vencida</p>':''}
-              <p>Plano: ${c.plano}</p>
-              <p>Dispositivo: ${c.dispositivo}</p>
-              <p>Contato: ${c.contato}</p>
-              <p>MAC: ${c.mac} | Chave: ${c.chave}</p>
-              <p>Lista: ${c.lista}</p>
-              <p>Assinatura: ${c.data_assinatura} | Expiração da lista: ${c.expiracao}</p>
-              <button onclick="copy('${c.mac}')" class="btn-mac">Copiar MAC</button>
-              <button onclick="copy('${c.chave}')" class="btn-chave">Copiar Chave</button>
-              <button onclick="editClient(${i})" class="btn-editar">Editar</button>
-            </div>`;
+    // Cadastro / Atualização
+    document.getElementById('clientForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(this));
+      if(editDocId){
+        await updateDoc(doc(db,"clientes",editDocId),data);
+        editDocId=null;
+      } else {
+        await addDoc(clientsCol, data);
+      }
+      this.reset();
+      await loadClients();
+      showTab('clientes');
+    });
+
+    window.editClient = async function(id){
+      const docRef = doc(db,"clientes",id);
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()){
+        const c=docSnap.data();
+        editDocId=id;
+        for(const key in c){
+          if(document.querySelector(`[name="${key}"]`)){
+            document.querySelector(`[name="${key}"]`).value=c[key];
+          }
         }
-      });
+        showTab('cadastrar');
+      }
     }
 
-    // Formatação MAC, chave e contato
-    document.getElementById('macInput').addEventListener('input', function(){
-      let value=this.value.replace(/[^a-fA-F0-9]/g,'').toUpperCase().slice(0,12);
-      this.value=value.match(/.{1,2}/g)?.join(':')||'';
-    });
-    document.getElementById('chaveInput').addEventListener('input',function(){
-      this.value=this.value.replace(/\D/g,'').slice(0,6);
-    });
-    document.getElementById('contatoInput').addEventListener('input',function(){
-      let value=this.value.replace(/\D/g,'').slice(0,10);
-      let formatted=value;
-      if(value.length>=2){ formatted=`(${value.slice(0,2)}) ${value.slice(2)}`; }
-      if(value.length>=6){ formatted=`(${value.slice(0,2)}) ${value.slice(2,6)}-${value.slice(6)}`; }
-      this.value=formatted;
-    });
-
-    // Excel
-    function exportToExcel(){
-      const clients=JSON.parse(localStorage.getItem('clientes')||'[]');
-      if(clients.length===0){ alert("Nenhum cliente cadastrado para exportar."); return; }
-      const worksheet=XLSX.utils.json_to_sheet(clients);
-      const workbook=XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook,worksheet,"Clientes IPTV");
-      XLSX.writeFile(workbook,"clientes_iptv.xlsx");
+    window.deleteClient = async function(id){
+      if(confirm("Excluir este cliente?")){
+        await deleteDoc(doc(db,"clientes",id));
+        await loadClients();
+      }
     }
 
-    function importFromExcel(event){
-      const file=event.target.files[0]; if(!file) return;
+    // Buscar cliente
+    window.searchClient = async function(){
+      const term = document.getElementById('searchInput').value.toLowerCase();
+      const snapshot = await getDocs(clientsCol);
+      const clients = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+      const results = clients.filter(c=>c.nome.toLowerCase().includes(term)||c.mac.toLowerCase().includes(term));
+      renderClients(results);
+    }
+
+    // Importar do Excel
+    document.getElementById('importFile').addEventListener('change', async (e)=>{
+      const file=e.target.files[0];
+      if(!file) return;
       const reader=new FileReader();
-      reader.onload=function(e){
-        const data=new Uint8Array(e.target.result);
+      reader.onload=async function(evt){
+        const data=new Uint8Array(evt.target.result);
         const workbook=XLSX.read(data,{type:'array'});
-        const sheetName=workbook.SheetNames[0];
-        const sheet=workbook.Sheets[sheetName];
-        const importedClients=XLSX.utils.sheet_to_json(sheet);
-        if(!Array.isArray(importedClients)){ alert("Arquivo inválido."); return; }
-        const existingClients=JSON.parse(localStorage.getItem('clientes')||'[]');
-        const allClients=existingClients.concat(importedClients);
-        localStorage.setItem('clientes',JSON.stringify(allClients));
-        renderClients(allClients);
-        alert("Importação concluída com sucesso!");
+        const sheet=workbook.Sheets[workbook.SheetNames[0]];
+        const rows=XLSX.utils.sheet_to_json(sheet);
+        for(const row of rows){
+          await addDoc(clientsCol,row);
+        }
+        await loadClients();
+        alert("Importado com sucesso!");
       };
       reader.readAsArrayBuffer(file);
-    }
+    });
 
-    function editClient(index){
-      const clients=JSON.parse(localStorage.getItem('clientes')||'[]');
-      const c=clients[index];
-      document.querySelector('[name="nome"]').value=c.nome;
-      document.querySelector('[name="plano"]').value=c.plano;
-      document.querySelector('[name="mac"]').value=c.mac;
-      document.querySelector('[name="chave"]').value=c.chave;
-      document.querySelector('[name="lista"]').value=c.lista;
-      document.querySelector('[name="dispositivo"]').value=c.dispositivo;
-      document.querySelector('[name="contato"]').value=c.contato;
-      document.querySelector('[name="data_assinatura"]').value=c.data_assinatura;
-      document.querySelector('[name="expiracao"]').value=c.expiracao;
-      editIndex=index;
-      showTab('cadastrar');
+    // Exportar para Excel
+    window.exportToExcel = async function(){
+      const snapshot=await getDocs(clientsCol);
+      const clients=snapshot.docs.map(doc=>doc.data());
+      const ws=XLSX.utils.json_to_sheet(clients);
+      const wb=XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb,ws,"Clientes");
+      XLSX.writeFile(wb,"clientes.xlsx");
     }
   </script>
 </body>
 </html>
+
