@@ -1,343 +1,325 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>PAINEL DE IPTV</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      padding: 20px;
-      color: #333;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAINEL DE IPTV</title>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  padding: 20px;
+  color: #333;
+  margin: 0;
+}
 
-    h1,h2 {
-      text-align:center;
-      color:#007bff;
-    }
+h1,h2 {
+  text-align:center;
+  color:#007bff;
+}
 
-    form, .search-area {
-      background:#fff;
-      padding:20px;
-      border-radius:8px;
-      max-width:600px;
-      margin:20px auto;
-      box-shadow:0 0 10px rgba(0,0,0,0.1);
-    }
+form, .search-area {
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  max-width:600px;
+  margin:20px auto;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
 
-    form label {
-      display:block;
-      margin-top:10px;
-      font-weight:bold;
-    }
+form label {
+  display:block;
+  margin-top:10px;
+  font-weight:bold;
+}
 
-    form input, form select {
-      width:100%;
-      padding:8px;
-      margin-top:5px;
-      border:1px solid #ccc;
-      border-radius:4px;
-      box-sizing:border-box;
-    }
+form input, form select {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  box-sizing:border-box;
+  word-break: break-word;
+}
 
-    .btn, .btn-export, .btn-import {
-      margin-top:15px;
-      padding:10px 15px;
-      color:white;
-      border:none;
-      border-radius:4px;
-      cursor:pointer;
-      font-size:16px;
-    }
+.btn, .btn-export, .btn-import {
+  margin-top:15px;
+  padding:10px 15px;
+  color:white;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  font-size:16px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    .btn { background:#007bff; }
-    .btn:hover { background:#0056b3; }
-    .btn-export { background:#ffc107; margin-left:10px;}
-    .btn-import { background:#17a2b8; margin-left:10px;}
+.btn { background:#007bff; }
+.btn:hover { background:#0056b3; }
+.btn-export { background:#ffc107; margin-top:10px;}
+.btn-import { background:#17a2b8; margin-top:10px;}
 
-    .client-list {
-      max-width:800px;
-      margin:auto;
-    }
+.client-list {
+  max-width:800px;
+  margin:auto;
+}
 
-    .client-card {
-      background:#fff;
-      padding:15px;
-      margin:10px 0;
-      border-radius:6px;
-      box-shadow:0 0 5px rgba(0,0,0,0.1);
-    }
+.client-card {
+  background:#fff;
+  padding:15px;
+  margin:10px 0;
+  border-radius:6px;
+  box-shadow:0 0 5px rgba(0,0,0,0.1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
 
-    .client-card p { margin:5px 0; }
-    .client-card button {
-      margin:5px 5px 0 0;
-      padding:6px 10px;
-      color:white;
-      border:none;
-      border-radius:4px;
-      cursor:pointer;
-    }
+.client-card p {
+  margin:5px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
-    .btn-mac { background:#007bff; } 
-    .btn-chave { background:#28a745; } 
-    .btn-excluir { background:#dc3545; } 
-    .btn-editar { background:#6c757d; }
+.client-card button {
+  margin-top:5px;
+  padding:6px 8px;
+  font-size:14px;
+  white-space: normal;
+  word-break: break-word;
+  width: 100%;
+}
 
-    .client-card button:hover { opacity:0.9; }
+.btn-mac { background:#007bff; } 
+.btn-chave { background:#28a745; } 
+.btn-excluir { background:#dc3545; } 
+.btn-editar { background:#6c757d; }
 
-    .tabs { text-align:center; margin-bottom:20px; }
-    .tab-btn {
-      padding:10px 20px;
-      margin:0 5px;
-      background:#007bff;
-      color:white;
-      border:none;
-      border-radius:4px;
-      cursor:pointer;
-    }
+.tabs { text-align:center; margin-bottom:20px; }
+.tab-btn {
+  padding:10px 20px;
+  margin:5px auto;
+  background:#007bff;
+  color:white;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+  display:block;
+  width: 90%;
+  box-sizing: border-box;
+}
 
-    .tab-btn:hover { background:#0056b3; }
+.tab-btn:hover { background:#0056b3; }
 
-    .tab-content { display:none; max-width:800px; margin:auto; }
-    .tab-content.active { display:block; }
+.tab-content { display:none; max-width:800px; margin:auto; }
+.tab-content.active { display:block; }
 
-    .vencido { border-left:6px solid #dc3545; background-color:#fff5f5; }
-    .alerta-vencido { color:#dc3545; font-weight:bold; margin-bottom:10px; }
+.vencido { border-left:6px solid #dc3545; background-color:#fff5f5; }
+.alerta-vencido { color:#dc3545; font-weight:bold; margin-bottom:10px; }
 
-    /* SEARCH AREA */
-    .search-area { display:flex; flex-direction:column; align-items:center; justify-content:center; margin:30px auto; max-width:600px; }
-    #searchInput { width:100%; max-width:500px; padding:12px; font-size:18px; border:2px solid #007bff; border-radius:6px; margin-bottom:10px; }
+.search-area { display:flex; flex-direction:column; align-items:center; justify-content:center; margin:30px auto; max-width:600px; }
+#searchInput { width:100%; max-width:100%; padding:12px; font-size:18px; border:2px solid #007bff; border-radius:6px; box-sizing:border-box; }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .client-card, form, .search-area {
-        width: 95%;
-        padding:15px;
-      }
+@media (max-width: 768px) {
+  .client-card, form, .search-area { width:95%; padding:15px; }
+  #searchInput { font-size:16px; padding:10px; }
+  h1,h2 { font-size:20px; }
+}
 
-      .tab-btn {
-        display:block;
-        width: 90%;
-        margin: 5px auto;
-        font-size:16px;
-      }
-
-      .btn, .btn-export, .btn-import {
-        width: 100%;
-        margin-top:10px;
-      }
-
-      #searchInput {
-        font-size:16px;
-        padding:10px;
-      }
-
-      .client-card button {
-        padding:5px 8px;
-        font-size:14px;
-        margin-bottom:5px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1, h2 { font-size:20px; }
-      form input, form select, #searchInput { font-size:14px; padding:8px; }
-      .client-card button { font-size:12px; padding:4px 6px; }
-    }
-  </style>
+@media (max-width: 480px) {
+  h1,h2 { font-size:18px; }
+  form input, form select, #searchInput { font-size:14px; padding:8px; }
+  .client-card button { font-size:12px; padding:5px; }
+}
+</style>
 </head>
 <body>
-  <h1>PAINEL DE CLIENTES</h1>
+<h1>PAINEL DE CLIENTES</h1>
 
-  <div class="tabs">
-    <button onclick="showTab('buscar')" class="tab-btn">🔍 Buscar</button>
-    <button onclick="showTab('cadastrar')" class="tab-btn">📝 Cadastrar</button>
-    <button onclick="showTab('clientes')" class="tab-btn">👥 Clientes</button>
-  </div>
+<div class="tabs">
+  <button onclick="showTab('buscar')" class="tab-btn">🔍 Buscar</button>
+  <button onclick="showTab('cadastrar')" class="tab-btn">📝 Cadastrar</button>
+  <button onclick="showTab('clientes')" class="tab-btn">👥 Clientes</button>
+</div>
 
-  <div id="buscar" class="tab-content">
-    <h2>Buscar Cliente</h2>
-    <input type="text" id="searchInput" placeholder="Buscar por nome ou MAC">
-    <button onclick="searchClient()" class="btn">Buscar</button>
-    <div id="searchResults"></div>
-  </div>
+<div id="buscar" class="tab-content">
+  <h2>Buscar Cliente</h2>
+  <input type="text" id="searchInput" placeholder="Buscar por nome ou MAC">
+  <button onclick="searchClient()" class="btn">Buscar</button>
+  <div id="searchResults"></div>
+</div>
 
-  <div id="cadastrar" class="tab-content">
-    <h2>Cadastrar Cliente</h2>
-    <form id="clientForm">
-      <label>Nome:</label><input type="text" name="nome" required>
-      <label>Contato:</label><input type="text" name="contato" id="contatoInput" maxlength="15" required>
-      <label>Plano:</label><input type="text" name="plano" required>
-      <label>MAC Address:</label><input type="text" name="mac" id="macInput" maxlength="17" required>
-      <label>Chave de acesso:</label><input type="text" name="chave" id="chaveInput" maxlength="6" required>
-      <label>Lista IPTV:</label><input type="text" name="lista" required>
-      <label>Dispositivo:</label>
-      <select name="dispositivo" required>
-        <option value="">Selecione</option>
-        <option value="Celular">Celular</option>
-        <option value="TV">TV</option>
-        <option value="Computador">Computador</option>
-        <option value="Roku">Roku</option>
-      </select>
-      <label>Data da assinatura:</label><input type="date" name="data_assinatura" required>
-      <label>Expiração da lista:</label><input type="date" name="expiracao" required>
-      <button type="submit" class="btn">Cadastrar</button>
-    </form>
-  </div>
+<div id="cadastrar" class="tab-content">
+  <h2>Cadastrar Cliente</h2>
+  <form id="clientForm">
+    <label>Nome:</label><input type="text" name="nome" required>
+    <label>Contato:</label><input type="text" name="contato" id="contatoInput" maxlength="15" required>
+    <label>Plano:</label><input type="text" name="plano" required>
+    <label>MAC Address:</label><input type="text" name="mac" id="macInput" maxlength="17" required>
+    <label>Chave de acesso:</label><input type="text" name="chave" id="chaveInput" maxlength="6" required>
+    <label>Lista IPTV:</label><input type="text" name="lista" required>
+    <label>Dispositivo:</label>
+    <select name="dispositivo" required>
+      <option value="">Selecione</option>
+      <option value="Celular">Celular</option>
+      <option value="TV">TV</option>
+      <option value="Computador">Computador</option>
+      <option value="Roku">Roku</option>
+    </select>
+    <label>Data da assinatura:</label><input type="date" name="data_assinatura" required>
+    <label>Expiração da lista:</label><input type="date" name="expiracao" required>
+    <button type="submit" class="btn">Cadastrar</button>
+  </form>
+</div>
 
-  <div id="clientes" class="tab-content">
-    <h2>Clientes Cadastrados</h2>
-    <input type="file" id="importFile" class="btn-import">
-    <button onclick="exportToExcel()" class="btn-export">Exportar Excel</button>
-    <div id="clientList" class="client-list"></div>
-  </div>
+<div id="clientes" class="tab-content">
+  <h2>Clientes Cadastrados</h2>
+  <input type="file" id="importFile" class="btn-import">
+  <button onclick="exportToExcel()" class="btn-export">Exportar Excel</button>
+  <div id="clientList" class="client-list"></div>
+</div>
 
-  <!-- SheetJS -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAaBINwIJggs4WYhJewrjeSF21mbg5h0uI",
-      authDomain: "clientes-iptv-9a384.firebaseapp.com",
-      projectId: "clientes-iptv-9a384",
-      storageBucket: "clientes-iptv-9a384.firebasestorage.app",
-      messagingSenderId: "319140597029",
-      appId: "1:319140597029:web:2e419c1f37d4080594decc"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyAaBINwIJggs4WYhJewrjeSF21mbg5h0uI",
+  authDomain: "clientes-iptv-9a384.firebaseapp.com",
+  projectId: "clientes-iptv-9a384",
+  storageBucket: "clientes-iptv-9a384.firebasestorage.app",
+  messagingSenderId: "319140597029",
+  appId: "1:319140597029:web:2e419c1f37d4080594decc"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const clientsCol = collection(db, "clientes");
-    let editDocId = null;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const clientsCol = collection(db, "clientes");
+let editDocId = null;
 
-    // Mostrar abas
-    function showTab(tabId){
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-    }
-    window.showTab = showTab;
+function showTab(tabId){
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+}
+window.showTab = showTab;
 
-    window.onload = async () => {
-      showTab('clientes');
-      await loadClients();
-    };
+window.onload = async () => {
+  showTab('clientes');
+  await loadClients();
+};
 
-    // Carregar clientes
-    async function loadClients(){
-      const snapshot = await getDocs(clientsCol);
-      const clients = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      renderClients(clients);
-    }
+async function loadClients(){
+  const snapshot = await getDocs(clientsCol);
+  const clients = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  renderClients(clients);
+}
 
-    function renderClients(clients){
-      const list = document.getElementById('clientList');
-      list.innerHTML='';
-      clients.forEach(c=>{
-        const hoje=new Date();
-        const expiracao=new Date(c.expiracao);
-        const vencido = expiracao<hoje;
-        list.innerHTML+=`
-        <div class="client-card ${vencido?'vencido':''}">
-          <p><strong>${c.nome}</strong></p>
-          ${vencido?'<p class="alerta-vencido">⚠ Assinatura vencida</p>':''}
-          <p>Plano: ${c.plano}</p>
-          <p>Dispositivo: ${c.dispositivo}</p>
-          <p>Contato: ${c.contato}</p>
-          <p>MAC: ${c.mac} | Chave: ${c.chave}</p>
-          <p>Lista: ${c.lista}</p>
-          <p>Assinatura: ${c.data_assinatura} | Expiração da lista: ${c.expiracao}</p>
-          <button onclick="copy('${c.mac}')" class="btn-mac">Copiar MAC</button>
-          <button onclick="copy('${c.chave}')" class="btn-chave">Copiar Chave</button>
-          <button onclick="editClient('${c.id}')" class="btn-editar">Editar</button>
-          <button onclick="deleteClient('${c.id}')" class="btn-excluir">Excluir</button>
-        </div>`;
-      });
-    }
+function renderClients(clients){
+  const list = document.getElementById('clientList');
+  list.innerHTML='';
+  clients.forEach(c=>{
+    const hoje=new Date();
+    const expiracao=new Date(c.expiracao);
+    const vencido = expiracao<hoje;
+    list.innerHTML+=`
+    <div class="client-card ${vencido?'vencido':''}">
+      <p><strong>${c.nome}</strong></p>
+      ${vencido?'<p class="alerta-vencido">⚠ Assinatura vencida</p>':''}
+      <p>Plano: ${c.plano}</p>
+      <p>Dispositivo: ${c.dispositivo}</p>
+      <p>Contato: ${c.contato}</p>
+      <p>MAC: ${c.mac} | Chave: ${c.chave}</p>
+      <p>Lista: ${c.lista}</p>
+      <p>Assinatura: ${c.data_assinatura} | Expiração da lista: ${c.expiracao}</p>
+      <button onclick="copy('${c.mac}')" class="btn-mac">Copiar MAC</button>
+      <button onclick="copy('${c.chave}')" class="btn-chave">Copiar Chave</button>
+      <button onclick="editClient('${c.id}')" class="btn-editar">Editar</button>
+      <button onclick="deleteClient('${c.id}')" class="btn-excluir">Excluir</button>
+    </div>`;
+  });
+}
 
-    window.copy = function(text){ navigator.clipboard.writeText(text); alert("Copiado: "+text); }
+window.copy = function(text){ navigator.clipboard.writeText(text); alert("Copiado: "+text); }
 
-    // Cadastro / Atualização
-    document.getElementById('clientForm').addEventListener('submit', async function(e){
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(this));
-      if(editDocId){
-        await updateDoc(doc(db,"clientes",editDocId),data);
-        editDocId=null;
-      } else {
-        await addDoc(clientsCol, data);
-      }
-      this.reset();
-      await loadClients();
-      showTab('clientes');
-    });
+document.getElementById('clientForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this));
+  if(editDocId){
+    await updateDoc(doc(db,"clientes",editDocId),data);
+    editDocId=null;
+  } else {
+    await addDoc(clientsCol, data);
+  }
+  this.reset();
+  await loadClients();
+  showTab('clientes');
+});
 
-    window.editClient = async function(id){
-      const docRef = doc(db,"clientes",id);
-      const docSnap = await getDoc(docRef);
-      if(docSnap.exists()){
-        const c=docSnap.data();
-        editDocId=id;
-        for(const key in c){
-          if(document.querySelector(`[name="${key}"]`)){
-            document.querySelector(`[name="${key}"]`).value=c[key];
-          }
-        }
-        showTab('cadastrar');
+window.editClient = async function(id){
+  const docRef = doc(db,"clientes",id);
+  const docSnap = await getDoc(docRef);
+  if(docSnap.exists()){
+    const c=docSnap.data();
+    editDocId=id;
+    for(const key in c){
+      if(document.querySelector(`[name="${key}"]`)){
+        document.querySelector(`[name="${key}"]`).value=c[key];
       }
     }
+    showTab('cadastrar');
+  }
+}
 
-    window.deleteClient = async function(id){
-      if(confirm("Excluir este cliente?")){
-        await deleteDoc(doc(db,"clientes",id));
-        await loadClients();
-      }
+window.deleteClient = async function(id){
+  if(confirm("Excluir este cliente?")){
+    await deleteDoc(doc(db,"clientes",id));
+    await loadClients();
+  }
+}
+
+window.searchClient = async function(){
+  const term = document.getElementById('searchInput').value.toLowerCase();
+  const snapshot = await getDocs(clientsCol);
+  const clients = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  const results = clients.filter(c=>c.nome.toLowerCase().includes(term)||c.mac.toLowerCase().includes(term));
+  renderClients(results);
+}
+
+document.getElementById('importFile').addEventListener('change', async (e)=>{
+  const file=e.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=async function(evt){
+    const data=new Uint8Array(evt.target.result);
+    const workbook=XLSX.read(data,{type:'array'});
+    const sheet=workbook.Sheets[workbook.SheetNames[0]];
+    const rows=XLSX.utils.sheet_to_json(sheet);
+    for(const row of rows){
+      await addDoc(clientsCol,row);
     }
+    await loadClients();
+    alert("Importado com sucesso!");
+  };
+  reader.readAsArrayBuffer(file);
+});
 
-    // Buscar cliente
-    window.searchClient = async function(){
-      const term = document.getElementById('searchInput').value.toLowerCase();
-      const snapshot = await getDocs(clientsCol);
-      const clients = snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
-      const results = clients.filter(c=>c.nome.toLowerCase().includes(term)||c.mac.toLowerCase().includes(term));
-      renderClients(results);
-    }
-
-    // Importar do Excel
-    document.getElementById('importFile').addEventListener('change', async (e)=>{
-      const file=e.target.files[0];
-      if(!file) return;
-      const reader=new FileReader();
-      reader.onload=async function(evt){
-        const data=new Uint8Array(evt.target.result);
-        const workbook=XLSX.read(data,{type:'array'});
-        const sheet=workbook.Sheets[workbook.SheetNames[0]];
-        const rows=XLSX.utils.sheet_to_json(sheet);
-        for(const row of rows){
-          await addDoc(clientsCol,row);
-        }
-        await loadClients();
-        alert("Importado com sucesso!");
-      };
-      reader.readAsArrayBuffer(file);
-    });
-
-    // Exportar para Excel
-    window.exportToExcel = async function(){
-      const snapshot=await getDocs(clientsCol);
-      const clients=snapshot.docs.map(doc=>doc.data());
-      const ws=XLSX.utils.json_to_sheet(clients);
-      const wb=XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb,ws,"Clientes");
-      XLSX.writeFile(wb,"clientes.xlsx");
-    }
-  </script>
+window.exportToExcel = async function(){
+  const snapshot=await getDocs(clientsCol);
+  const clients=snapshot.docs.map(doc=>doc.data());
+  const ws=XLSX.utils.json_to_sheet(clients);
+  const wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,ws,"Clientes");
+  XLSX.writeFile(wb,"clientes.xlsx");
+}
+</script>
 </body>
 </html>
+
+
 
 
 
